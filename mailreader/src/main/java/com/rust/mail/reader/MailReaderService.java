@@ -25,13 +25,14 @@ public class MailReaderService {
     }
 
     public String read(String username, String password) throws MessagingException, IOException {
-        String host = "smtp.gmail.com";
+        String host = "imap.gmail.com";
         Session session = Session.getInstance(properties);
-        Store store = session.getStore("smtp");
+        Store store = session.getStore("imap");
         store.connect(host, username, password);
 
         Folder inbox = store.getFolder("Inbox");
-        Message[] messages = inbox.getMessages(0,0);
+        inbox.open(Folder.READ_ONLY);
+        Message[] messages = inbox.getMessages();
         for (Message message : messages) {
             System.out.println(message.getContent());
         }
