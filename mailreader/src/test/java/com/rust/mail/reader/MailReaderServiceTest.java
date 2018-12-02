@@ -1,14 +1,20 @@
 package com.rust.mail.reader;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-
-import static org.testng.Assert.*;
+import java.io.InputStreamReader;
 
 public class MailReaderServiceTest {
 
     public static void main(String[] args) throws IOException {
         MailReaderService  mailReaderService = new MailReaderService();
-        mailReaderService.defaultInit("/Users/rhythmdas/IdeaProjects/mail/mailreader/src/main/resources/mail.properties");
+        mailReaderService.initFromPath("/Users/rhythmdas/IdeaProjects/mail/mailreader/src/main/resources/mail.properties");
+
+        BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Enter username:");
+        String username = read.readLine();
+        System.out.println("password for " + username  + " : ");
+        String password = read.readLine();
     }
 
 }
